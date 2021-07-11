@@ -12,5 +12,8 @@ node_modules/
 .env
 .env.test
 
+# Postgres environment variables
+postgres.env
+
 # VS code configstore
 .vscode
