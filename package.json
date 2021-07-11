@@ -12,7 +12,8 @@
     "start": "npm run build && node dist/index.js",
     "startprod": "node dist/index.js",
     "test": "jest --forceExit --detectOpenHandles",
-    "testwatch": "jest --watchAll --detectOpenHandles --passWithNoTests"
+    "testwatch": "jest --watchAll --detectOpenHandles --passWithNoTests",
+    "mockcimssql": "ts-node test/__mock__/ci-mssql.ts"
   },
   "repository": {
     "type": "git",
