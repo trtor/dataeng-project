@@ -12,7 +12,7 @@ export function removeSignature(str: string): string {
   const matchedSignature: string = match[1];
 
   // If contain number => not signature, else remove it
-  if (/\d/.test(matchedSignature)) return str;
+  if (/\d{2}/.test(matchedSignature)) return str;
 
   return str.replace(/\r?\n(.+?)$/, "").trim();
 }

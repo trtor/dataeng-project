@@ -11,8 +11,8 @@
     "build": "rm -rf dist/ && tsc -p .",
     "start": "npm run build && node dist/index.js",
     "startprod": "node dist/index.js",
-    "test": "jest --forceExit --detectOpenHandles",
-    "testwatch": "jest --watchAll --detectOpenHandles --passWithNoTests",
+    "test": "jest --forceExit",
+    "testwatch": "jest --watchAll --passWithNoTests",
     "mockcimssql": "ts-node test/__mock__/ci-mssql.ts"
   },
   "repository": {

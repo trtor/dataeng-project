@@ -31,3 +31,7 @@ ORDER BY
 - [ ] Extract LVEF data from report
 - [ ] Detect & exclude LVEF value from previous study
 - [ ] Load test, wrk
+
+## Limitation
+
+- บาง report พิมพ์ผิด ใน findings กับ impression ไม่ตรงกัน จะถูก exclude, (null result)
