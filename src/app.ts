@@ -1,7 +1,8 @@
 import express, { Application, Request, Response } from "express";
-import { HNMapModel } from "./database/model-hn-map";
-import { RadStudyModel } from "./database/model-rad-study";
+import { HNMapModel } from "./database/pg-model-hn-map";
+import { RadStudyModel } from "./database/pg-model-rad-study";
 import { pgSeq } from "./database/postgres-con";
+import { insertReport } from "./insert-pg-database/insert";
 import { authMiddleware } from "./middleware/auth-middleware";
 import { getRadReport } from "./rad-report/report";
 
@@ -10,6 +11,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.get("/radreport/:date", authMiddleware, getRadReport);
+app.post("/insertReport", authMiddleware, insertReport);
 
 /**
  * Health check

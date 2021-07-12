@@ -1,5 +1,5 @@
 import { DataTypes, Model, Optional } from "sequelize";
-import { RadStudyModel } from "./model-rad-study";
+import { RadStudyModel } from "./pg-model-rad-study";
 import { pgSeq } from "./postgres-con";
 
 interface HNMapAttributes {

@@ -46,3 +46,5 @@ ORDER BY
 ## Limitation
 
 - บาง report พิมพ์ผิด ใน findings กับ impression ไม่ตรงกัน จะถูก exclude, (null result)
+- ไม่รับ Feature update หากจะ insert ซ้ำ
+- No timezone in insert pg = GMT +7

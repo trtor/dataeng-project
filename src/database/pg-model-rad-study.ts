@@ -1,6 +1,6 @@
-import { Association, DataTypes, Model, Optional } from "sequelize";
 import * as Sequelize from "sequelize";
-import { HNMapModel } from "./model-hn-map";
+import { DataTypes, Model, Optional } from "sequelize";
+import { HNMapModel } from "./pg-model-hn-map";
 import { pgSeq } from "./postgres-con";
 // import {} from "./mode-association";
 
