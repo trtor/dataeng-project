@@ -27,10 +27,21 @@ ORDER BY
 
 ## To-do list
 
-- [ ] Remove signature in the bottom of report
-- [ ] Extract LVEF data from report
-- [ ] Detect & exclude LVEF value from previous study
+- [x] Extract LVEF data from report
+- [x] Remove signature in the bottom of report
+- [x] Detect & exclude LVEF value from previous study
+- [x] Unit test extract from report, 100 samples
+- [ ] Design relational database, normalization, ER diagram
+- [ ] Receive data -> write to Postgres
+- [ ] HN - Gen HN Map table
+- [ ] Write mock data, 1 year of GBP study
 - [ ] Load test, wrk
+- [ ] ETL flow
+- [ ] DAG, Deployment DAG
+- [ ] Airflow schedule
+- [ ] Monitor Airflow servies
+- [ ] Presentation
+- [ ] Postgres DB Model association
 
 ## Limitation
 

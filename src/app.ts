@@ -1,4 +1,7 @@
 import express, { Application, Request, Response } from "express";
+import { HNMapModel } from "./database/model-hn-map";
+import { RadStudyModel } from "./database/model-rad-study";
+import { pgSeq } from "./database/postgres-con";
 import { authMiddleware } from "./middleware/auth-middleware";
 import { getRadReport } from "./rad-report/report";
 
@@ -14,5 +17,25 @@ app.get("/radreport/:date", authMiddleware, getRadReport);
 app.get("/ping", (_req: Request, res: Response<string>) => {
   return res.status(200).end("OK");
 });
+
+// Database sync
+(async function () {
+  try {
+    await pgSeq.authenticate();
+    if (process.env.NODE_ENV !== "test") console.log("Postgres connected.");
+  } catch (error) {
+    console.error("Unable to connect to the database:", error);
+  }
+
+  if (!["test", "production"].includes(process.env.NODE_ENV || "")) {
+    try {
+      await RadStudyModel.sync({ force: true, alter: true });
+      await HNMapModel.sync({ force: true, alter: true });
+      console.log("Postgres model sync successful.");
+    } catch (error) {
+      console.error("Unable to sync model to Postgres", error);
+    }
+  }
+})();
 
 export default app;

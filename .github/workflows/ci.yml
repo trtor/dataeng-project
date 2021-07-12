@@ -21,6 +21,20 @@ jobs:
         ports:
           - 1434:1433
 
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: mockdb
+        ports:
+          - 5499:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
     strategy:
       matrix:
         node-version: [16.x]
@@ -46,6 +60,7 @@ jobs:
           DB_RAD_37_DATABASE_TSTUDYTAB: TStudyTabCI
           DB_RAD_37_DATABASE_TSTUDYTAB_SCHEMA: dbo
 
+      # Run full test
       - run: npm test
         env:
           DB_RAD_37_IP: localhost
@@ -54,4 +69,12 @@ jobs:
           DB_RAD_37_PASSWORD: Sa123******password
           DB_RAD_37_DATABASE_TSTUDYTAB: TStudyTabCI
           DB_RAD_37_DATABASE_TSTUDYTAB_SCHEMA: dbo
+
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5499
+          POSTGRES_USER: root
+          POSTGRES_PASS: secret
+          POSTGRES_DB: mockdb
+          POSTGRES_SCHEMA: public
+
           API_SECRET: secret
