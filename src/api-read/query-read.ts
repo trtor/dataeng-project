@@ -3,7 +3,18 @@ import { RadStudyModel } from "../database/pg-model-rad-study";
 
 const year_ms: number = 1000 * 60 * 60 * 24 * 365.25;
 
-export async function selectRadStudy({ year }: { year: string }): Promise<any> {
+type SelectRadStudyRes =
+  | {
+      code: "OK";
+      payload: RadStudyModel[];
+    }
+  | { code: "ERROR"; message: string };
+
+export async function selectRadStudy({
+  year,
+}: {
+  year: string;
+}): Promise<SelectRadStudyRes> {
   const regDate = /^\d{4}$/;
   if (!regDate.test(year))
     return { code: "ERROR", message: "Invalid date format" };

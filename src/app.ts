@@ -1,4 +1,5 @@
 import express, { Application, Request, Response } from "express";
+import { readAPI } from "./api-read/api-read";
 import { HNMapModel } from "./database/pg-model-hn-map";
 import { RadStudyModel } from "./database/pg-model-rad-study";
 import { pgSeq } from "./database/postgres-con";
@@ -12,6 +13,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/radreport/:date", authMiddleware, getRadReport);
 app.post("/insertReport", authMiddleware, insertReport);
+app.get("/api-read/:year", readAPI);
 
 /**
  * Health check
