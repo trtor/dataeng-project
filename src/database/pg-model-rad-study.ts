@@ -2,7 +2,6 @@ import * as Sequelize from "sequelize";
 import { DataTypes, Model, Optional } from "sequelize";
 import { HNMapModel } from "./pg-model-hn-map";
 import { pgSeq } from "./postgres-con";
-// import {} from "./mode-association";
 
 interface RadStudyAttribute {
   report_id: number;

@@ -48,3 +48,4 @@ ORDER BY
 - บาง report พิมพ์ผิด ใน findings กับ impression ไม่ตรงกัน จะถูก exclude, (null result)
 - ไม่รับ Feature update หากจะ insert ซ้ำ
 - No timezone in insert pg = GMT +7
+- ยังไม่ทำ Postgres database association (foreign key) เพราะใช้ Sequelize library ยังไม่ถนัด

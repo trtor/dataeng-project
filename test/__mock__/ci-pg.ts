@@ -13,6 +13,5 @@ const config: pg.PoolConfig = {
 export const pool = new pg.Pool(config);
 
 pool.on("connect", () => {
-  if (process.env.CI === "true")
-    console.log("Connected to siit-fs test database");
+  if (process.env.CI === "true") console.log("Connected to test database");
 });
