@@ -10,6 +10,7 @@ type InsertRadStudyProps = {
   insert_date: Date | null;
   report_date: Date | null;
   report: string | null;
+  lvef: number | null;
   p_status: string | null;
 };
 
@@ -31,6 +32,7 @@ export async function insertRadStudy(
       insert_date: props.insert_date,
       report_date: props.report_date,
       report: props.report,
+      lvef: props.lvef,
       p_status: props.p_status,
     });
     return insertRes;

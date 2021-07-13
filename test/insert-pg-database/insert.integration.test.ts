@@ -47,6 +47,7 @@ describe("Report Query API", () => {
         insert_date: "2020-01-02T07:45:15.543",
         report_date: undefined,
         report: "Report",
+        lvef: 20,
         p_status: undefined,
       })
       .set({

@@ -13,6 +13,7 @@ interface RadStudyAttribute {
   insert_date: Date | null;
   report_date: Date | null;
   report: string | null;
+  lvef: number | null;
   p_status: string | null;
   create_at: Date;
   update_at: Date;
@@ -37,6 +38,7 @@ export class RadStudyModel
   public insert_date!: Date | null;
   public report_date!: Date | null;
   public report!: string | null;
+  public lvef!: number | null;
   public p_status!: string | null;
   public readonly create_at!: Date;
   public readonly update_at!: Date;
@@ -70,6 +72,7 @@ RadStudyModel.init(
     insert_date: { type: DataTypes.DATE, allowNull: true },
     report_date: { type: DataTypes.DATE, allowNull: true },
     report: { type: DataTypes.TEXT, allowNull: true },
+    lvef: { type: DataTypes.SMALLINT, allowNull: true },
     p_status: { type: DataTypes.STRING(20), allowNull: true },
     create_at: { type: DataTypes.DATE },
     update_at: { type: DataTypes.DATE },

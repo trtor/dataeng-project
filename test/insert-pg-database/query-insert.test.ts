@@ -53,6 +53,7 @@ describe("Insert radiology study", () => {
       insert_date: null,
       report_date: null,
       report: null,
+      lvef: 60,
       p_status: "COMPLETE",
     });
 

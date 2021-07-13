@@ -17,6 +17,7 @@ export async function insertReport(
     insert_date,
     report_date,
     report,
+    lvef,
     p_status,
   } = req.body;
 
@@ -34,6 +35,7 @@ export async function insertReport(
     insert_date: insert_date ? new Date(insert_date) : null,
     report_date: report_date ? new Date(report_date) : null,
     report: report || null,
+    lvef: lvef ? Number(lvef) : null,
     p_status: p_status || null,
   });
 
@@ -55,5 +57,6 @@ type InsertPostBody = {
   insert_date?: string;
   report_date?: string;
   report?: string;
+  lvef?: string;
   p_status?: string;
 };
