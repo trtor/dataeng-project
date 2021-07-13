@@ -5,6 +5,8 @@ import { RadStudyModel } from "./database/pg-model-rad-study";
 import { pgSeq } from "./database/postgres-con";
 import { insertReport } from "./insert-pg-database/insert";
 import { authMiddleware } from "./middleware/auth-middleware";
+import { extractLVEF } from "./process-extract-lvef/extract-lvef";
+import { removeSig } from "./process-extract-lvef/extract-tail";
 import { getRadReport } from "./rad-report/report";
 
 const app: Application = express();
@@ -13,6 +15,8 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get("/radreport/:date", authMiddleware, getRadReport);
 app.post("/insertReport", authMiddleware, insertReport);
+app.post("/extractLVEF", authMiddleware, extractLVEF);
+app.post("/removeSignature", authMiddleware, removeSig);
 app.get("/api-read/:year", readAPI);
 
 /**
