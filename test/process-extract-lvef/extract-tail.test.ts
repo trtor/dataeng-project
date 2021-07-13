@@ -76,4 +76,6 @@ IMPRESSION:
 1. Normal left ventricular function with resting LVEF of 67% with no significant change as compared to previous study
 2. 12% decrease of LVEF as compared to the baseline study on 26/06/2020
 
-Kijja, M.D.`;
+Kijja, M.D.
+
+`;
