@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { RadStudyModel } from "../database/pg-model-rad-study";
+import { trimStringGeneric } from "../utils/fn-trim";
 import { selectRadStudy } from "./query-read";
 
 type ReadAPIRes =
@@ -30,5 +31,8 @@ export async function readAPI(
       .status(500)
       .json({ status: 500, message: "Error: query database" });
 
-  return res.status(200).json({ status: 200, payload: readDB.payload });
+  return res.status(200).json({
+    status: 200,
+    payload: trimStringGeneric<RadStudyModel>(readDB.payload),
+  });
 }
