@@ -3,6 +3,7 @@ import { readAPI } from "./api-read/api-read";
 import { HNMapModel } from "./database/pg-model-hn-map";
 import { RadStudyModel } from "./database/pg-model-rad-study";
 import { pgSeq } from "./database/postgres-con";
+import { dumpInit } from "./dump/init";
 import { insertReport } from "./insert-pg-database/insert";
 import { authMiddleware } from "./middleware/auth-middleware";
 import { extractLVEF } from "./process-extract-lvef/extract-lvef";
@@ -18,6 +19,7 @@ app.post("/insertReport", authMiddleware, insertReport);
 app.post("/extractLVEF", authMiddleware, extractLVEF);
 app.post("/removeSignature", authMiddleware, removeSig);
 app.get("/api-read/:year", readAPI);
+app.get("/init", dumpInit);
 
 /**
  * Health check

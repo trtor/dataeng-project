@@ -48,7 +48,7 @@ export async function insertReport(
   // TODO Check date format and timezone
 }
 
-type InsertPostBody = {
+export type InsertPostBody = {
   si_hn?: string;
   acc_no?: string;
   modality?: string;

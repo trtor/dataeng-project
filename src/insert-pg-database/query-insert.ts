@@ -37,7 +37,7 @@ export async function insertRadStudy(
     });
     return insertRes;
   } catch (error) {
-    console.error("insertRadStudy()", error.message || error);
+    console.error("insertRadStudy()", JSON.stringify(error) + "");
     return false;
   }
 }
