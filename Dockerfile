@@ -7,6 +7,8 @@ ARG NODE_PORT
 ENV NODE_PORT=$NODE_PORT
 
 WORKDIR /home/node/app
+RUN apk add --no-cache python3 make g++ unixodbc-dev
+# RUN apk add --no-cache  node-gyp python3
 COPY package*.json ./
 RUN npm ci
 COPY tsconfig*.json ./
@@ -18,6 +20,7 @@ RUN npm run build
 # Production
 FROM node:16-alpine
 ENV NODE_ENV=production
+# RUN apk add --no-cache unixodbc-dev node-gyp python python3
 RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
 WORKDIR /home/node/app
 COPY --chown=node:node package*.json ./

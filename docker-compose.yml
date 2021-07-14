@@ -10,8 +10,8 @@ services:
     volumes:
       - ../project-postgres-data:/var/lib/postgresql/data/
     restart: unless-stopped
-    # networks:
-    #   - api-network
+    networks:
+      - api-network
 
   ts-api:
     depends_on:
@@ -26,7 +26,7 @@ services:
     ports:
       - ${DOCKER_EXPOSE_PORT}:${NODE_PORT}
     restart: always
-    # networks:
-    #   - api-network
-# networks:
-#   api-network:
+    networks:
+      - api-network
+networks:
+  api-network:
