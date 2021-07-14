@@ -86,7 +86,7 @@ RadStudyModel.init(
     updatedAt: "update_at",
     schema: process.env.POSTGRES_SCHEMA,
     indexes: [
-      { unique: true, fields: ["patient_id"] },
+      { unique: false, fields: ["patient_id"] },
       { unique: true, fields: ["acc_no"] },
       { unique: false, fields: ["modality"] },
       { unique: false, fields: ["bodypart"] },
