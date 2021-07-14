@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    services:
+      mssql:
+        image: mcr.microsoft.com/mssql/server:2017-latest
+        env:
+          ACCEPT_EULA: Y
+          SA_PASSWORD: Sa123******password
+          MSSQL_PID: Developer
+          TZ: Asia/Bangkok
+        ports:
+          - 1434:1433
+
+      postgres:
+        image: postgres:latest
+        env:
+          POSTGRES_USER: root
+          POSTGRES_PASSWORD: secret
+          POSTGRES_DB: mockdb
+        ports:
+          - 5499:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: npm ci
+      - run: npm run check
+      - run: npm run build
+
+      # Mock database on CI process
+      - run: npm run mockcimssql
+        env:
+          DB_RAD_37_IP: localhost
+          DB_RAD_37_PORT: 1434
+          DB_RAD_37_USERNAME: sa
+          DB_RAD_37_PASSWORD: Sa123******password
+          DB_RAD_37_DATABASE_TSTUDYTAB: TStudyTabCI
+          DB_RAD_37_DATABASE_TSTUDYTAB_SCHEMA: dbo
+
+      # Run full test
+      - run: npm test
+        env:
+          DB_RAD_37_IP: localhost
+          DB_RAD_37_PORT: 1434
+          DB_RAD_37_USERNAME: sa
+          DB_RAD_37_PASSWORD: Sa123******password
+          DB_RAD_37_DATABASE_TSTUDYTAB: TStudyTabCI
+          DB_RAD_37_DATABASE_TSTUDYTAB_SCHEMA: dbo
+
+          POSTGRES_HOST: localhost
+          POSTGRES_PORT: 5499
+          POSTGRES_USER: root
+          POSTGRES_PASS: secret
+          POSTGRES_DB: mockdb
+          POSTGRES_SCHEMA: public
+
+          API_SECRET: secret

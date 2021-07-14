@@ -11,7 +11,7 @@ export default async (): Promise<Config.InitialOptions> => {
     transform: {
       "^.+\\.tsx?$": "ts-jest",
     },
-    // globalSetup: "<rootDir>/test/jest-global-setup.ts",
-    // globalTeardown: "<rootDir>/test/jest-global-teardown.ts",
+    globalSetup: "<rootDir>/test/jest-global-setup.ts",
+    globalTeardown: "<rootDir>/test/jest-global-teardown.ts",
   };
 };
